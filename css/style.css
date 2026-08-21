@@ -469,6 +469,8 @@ html.no-js [data-reveal], html.no-js [data-reveal-group] > *{ opacity:1; transfo
   .hero-prenota-grid, .ferrucchio-grid, .dovesiamo-grid{ grid-template-columns: minmax(0,1fr); }
   .hero-prenota-photo img{ min-height: 16rem; }
   form.prenota-form{ grid-template-columns: minmax(0,1fr); }
+  .radio-row{ flex-direction:column; row-gap:.75em; column-gap:0; }
+  .radio-row label{ white-space:nowrap; }
   .footer-grid{ grid-template-columns: 1fr; text-align:left; }
   .footer-social{ text-align:left; }
   .specialita-cards{ gap: 22px; }
