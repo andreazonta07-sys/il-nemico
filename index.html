@@ -123,7 +123,93 @@
             </div>
             <div class="field">
               <label for="f-ora">Ora</label>
-              <input id="f-ora" name="Ora" type="time" required>
+              <select id="f-ora" name="Ora" required>
+                <option value="" disabled selected>Scegli l'ora</option>
+                <option value="10:00">10:00</option>
+                <option value="10:10">10:10</option>
+                <option value="10:20">10:20</option>
+                <option value="10:30">10:30</option>
+                <option value="10:40">10:40</option>
+                <option value="10:50">10:50</option>
+                <option value="11:00">11:00</option>
+                <option value="11:10">11:10</option>
+                <option value="11:20">11:20</option>
+                <option value="11:30">11:30</option>
+                <option value="11:40">11:40</option>
+                <option value="11:50">11:50</option>
+                <option value="12:00">12:00</option>
+                <option value="12:10">12:10</option>
+                <option value="12:20">12:20</option>
+                <option value="12:30">12:30</option>
+                <option value="12:40">12:40</option>
+                <option value="12:50">12:50</option>
+                <option value="13:00">13:00</option>
+                <option value="13:10">13:10</option>
+                <option value="13:20">13:20</option>
+                <option value="13:30">13:30</option>
+                <option value="13:40">13:40</option>
+                <option value="13:50">13:50</option>
+                <option value="14:00">14:00</option>
+                <option value="14:10">14:10</option>
+                <option value="14:20">14:20</option>
+                <option value="14:30">14:30</option>
+                <option value="14:40">14:40</option>
+                <option value="14:50">14:50</option>
+                <option value="15:00">15:00</option>
+                <option value="15:10">15:10</option>
+                <option value="15:20">15:20</option>
+                <option value="15:30">15:30</option>
+                <option value="15:40">15:40</option>
+                <option value="15:50">15:50</option>
+                <option value="16:00">16:00</option>
+                <option value="16:10">16:10</option>
+                <option value="16:20">16:20</option>
+                <option value="16:30">16:30</option>
+                <option value="16:40">16:40</option>
+                <option value="16:50">16:50</option>
+                <option value="17:00">17:00</option>
+                <option value="17:10">17:10</option>
+                <option value="17:20">17:20</option>
+                <option value="17:30">17:30</option>
+                <option value="17:40">17:40</option>
+                <option value="17:50">17:50</option>
+                <option value="18:00">18:00</option>
+                <option value="18:10">18:10</option>
+                <option value="18:20">18:20</option>
+                <option value="18:30">18:30</option>
+                <option value="18:40">18:40</option>
+                <option value="18:50">18:50</option>
+                <option value="19:00">19:00</option>
+                <option value="19:10">19:10</option>
+                <option value="19:20">19:20</option>
+                <option value="19:30">19:30</option>
+                <option value="19:40">19:40</option>
+                <option value="19:50">19:50</option>
+                <option value="20:00">20:00</option>
+                <option value="20:10">20:10</option>
+                <option value="20:20">20:20</option>
+                <option value="20:30">20:30</option>
+                <option value="20:40">20:40</option>
+                <option value="20:50">20:50</option>
+                <option value="21:00">21:00</option>
+                <option value="21:10">21:10</option>
+                <option value="21:20">21:20</option>
+                <option value="21:30">21:30</option>
+                <option value="21:40">21:40</option>
+                <option value="21:50">21:50</option>
+                <option value="22:00">22:00</option>
+                <option value="22:10">22:10</option>
+                <option value="22:20">22:20</option>
+                <option value="22:30">22:30</option>
+                <option value="22:40">22:40</option>
+                <option value="22:50">22:50</option>
+                <option value="23:00">23:00</option>
+                <option value="23:10">23:10</option>
+                <option value="23:20">23:20</option>
+                <option value="23:30">23:30</option>
+                <option value="23:40">23:40</option>
+                <option value="23:50">23:50</option>
+              </select>
             </div>
             <div class="field">
               <label for="f-persone">Numero di persone</label>
@@ -136,6 +222,12 @@
                 <label><input type="radio" name="Preferenza tavolo" value="Fuori"> Fuori</label>
                 <label><input type="radio" name="Preferenza tavolo" value="Indifferente"> Indifferente</label>
               </div>
+            </div>
+            <div class="field-full consent-field">
+              <label class="consent-row">
+                <input type="checkbox" name="Consenso privacy" value="Acconsento" required>
+                <span>Acconsento al trattamento dei miei dati personali per la gestione della prenotazione, come indicato nella <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+              </label>
             </div>
             <div class="field-full prenota-submit">
               <button class="btn btn-red" type="submit">Prenota un tavolo</button>
@@ -342,9 +434,15 @@
         <a href="https://www.facebook.com/p/Trattoria-da-Fernando-100046448567103/" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
+    <div class="footer-legal">
+      <span>Bar da Fernando di Tobioli Thomas</span>
+      <span>P.IVA 04217860248</span>
+      <span>Sede legale: Via Torino 3 · 36050 Cartigliano (VI)</span>
+    </div>
     <div class="footer-bottom">
       <span>© Il Nemico · Cartigliano (VI)</span>
       <span>Trattoria, griglia e Ferrucchio Gin</span>
+      <a href="privacy.html">Privacy Policy</a>
     </div>
   </div>
 </footer>

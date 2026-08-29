@@ -253,6 +253,17 @@ form.prenota-form{
 .radio-row input[type="radio"]{
   width:1.05em; height:1.05em; flex:none; margin:0; accent-color: var(--gold);
 }
+.consent-field{ margin-top:.2em; }
+.consent-row{
+  display:flex; align-items:flex-start; gap:.7em;
+  font-size: .84rem; font-weight:500; text-transform:none;
+  color: var(--ink-dim); line-height:1.5; cursor:pointer;
+}
+.consent-row input[type="checkbox"]{
+  width:1.15em; height:1.15em; flex:none; margin:.15em 0 0; accent-color: var(--gold);
+}
+.consent-row a{ color: var(--gold); text-decoration: underline; text-underline-offset: .2em; }
+.consent-row a:hover{ color: var(--red-bright); }
 .prenota-submit{
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1em;
 }
@@ -444,10 +455,16 @@ html.no-js .section-divider span{ transform:none; }
 .footer-info{ font-size: .92rem; color: var(--ink-dim); line-height:1.8; }
 .footer-info strong{ color: var(--ink); font-family: var(--display); font-size:1.2rem; letter-spacing:.02em; }
 .footer-social{ display:flex; flex-direction:column; gap:.6em; text-align:right; font-weight:600; }
-.footer-bottom{
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5em;
-  padding-top: 1.4rem; font-size:.78rem; color: var(--ink-dim);
+.footer-legal{
+  display:flex; flex-wrap:wrap; gap:.4em 1.4em;
+  padding-top: 1.4rem; font-size:.76rem; color: var(--ink-dim); opacity:.75;
 }
+.footer-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5em 1.2em;
+  padding-top: .9rem; font-size:.78rem; color: var(--ink-dim);
+}
+.footer-bottom a{ color: var(--ink-dim); text-decoration: underline; text-underline-offset:.2em; }
+.footer-bottom a:hover{ color: var(--gold); }
 
 /* ============ REVEAL UTILITIES ============ */
 [data-reveal], [data-reveal-group] > *{
