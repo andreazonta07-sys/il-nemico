@@ -198,24 +198,74 @@
     }
   }
 
-  /* ---------- Modulo prenotazione: invio via FormSubmit senza uscire dalla pagina ---------- */
+  /* ---------- Modulo prenotazione: invio via FormSubmit + riepilogo WhatsApp al titolare ---------- */
+  var OWNER_WHATSAPP = '393472417355';
+
+  function formatDataIt(iso) {
+    var parts = (iso || '').split('-');
+    if (parts.length !== 3) return iso;
+    return parts[2] + '/' + parts[1] + '/' + parts[0];
+  }
+
+  function buildRiepilogo(data) {
+    return 'Nuova prenotazione — Il Nemico\n' +
+      'Nome: ' + data.nome + '\n' +
+      'Telefono: ' + data.telefono + '\n' +
+      'Data: ' + formatDataIt(data.data) + '\n' +
+      'Ora: ' + data.ora + '\n' +
+      'Persone: ' + data.persone + '\n' +
+      'Tavolo: ' + data.tavolo;
+  }
+
   var form = document.querySelector('.prenota-form');
   if (form) {
     var feedback = form.querySelector('.form-feedback');
+    var summaryBox = form.parentElement.querySelector('.prenota-riepilogo');
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
       if (feedback) { feedback.textContent = 'Invio in corso…'; feedback.className = 'form-feedback is-pending'; }
 
+      var fd = new FormData(form);
+      var datiPrenotazione = {
+        nome: fd.get('Nome'),
+        telefono: fd.get('Telefono'),
+        data: fd.get('Data'),
+        ora: fd.get('Ora'),
+        persone: fd.get('Persone'),
+        tavolo: fd.get('Preferenza tavolo')
+      };
+
       fetch(form.action, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
+        body: fd
       }).then(function (res) {
         if (!res.ok) throw new Error('network');
+
+        var riepilogo = buildRiepilogo(datiPrenotazione);
+        var waUrl = 'https://wa.me/' + OWNER_WHATSAPP + '?text=' + encodeURIComponent(riepilogo);
+
+        if (summaryBox) {
+          summaryBox.innerHTML =
+            '<h3>Riepilogo della tua prenotazione</h3>' +
+            '<ul>' +
+              '<li><span>Nome</span><span>' + datiPrenotazione.nome + '</span></li>' +
+              '<li><span>Telefono</span><span>' + datiPrenotazione.telefono + '</span></li>' +
+              '<li><span>Data</span><span>' + formatDataIt(datiPrenotazione.data) + '</span></li>' +
+              '<li><span>Ora</span><span>' + datiPrenotazione.ora + '</span></li>' +
+              '<li><span>Persone</span><span>' + datiPrenotazione.persone + '</span></li>' +
+              '<li><span>Tavolo</span><span>' + datiPrenotazione.tavolo + '</span></li>' +
+            '</ul>' +
+            '<a class="btn btn-red" href="' + waUrl + '" target="_blank" rel="noopener">Conferma anche su WhatsApp</a>';
+          summaryBox.hidden = false;
+        }
+
         form.reset();
-        if (feedback) { feedback.textContent = 'Richiesta inviata. Ti ricontattiamo al più presto per confermare.'; feedback.className = 'form-feedback is-success'; }
+        form.hidden = true;
+        if (feedback) { feedback.textContent = ''; }
       }).catch(function () {
         if (feedback) { feedback.textContent = 'Invio non riuscito. Chiamaci direttamente allo 0424 829984.'; feedback.className = 'form-feedback is-error'; }
       }).finally(function () {
