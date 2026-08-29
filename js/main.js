@@ -207,14 +207,19 @@
     return parts[2] + '/' + parts[1] + '/' + parts[0];
   }
 
+  function primoNome(nomeCompleto) {
+    return (nomeCompleto || '').trim().split(/\s+/)[0] || '';
+  }
+
   function buildRiepilogo(data) {
-    return 'Nuova prenotazione — Il Nemico\n' +
-      'Nome: ' + data.nome + '\n' +
-      'Telefono: ' + data.telefono + '\n' +
-      'Data: ' + formatDataIt(data.data) + '\n' +
-      'Ora: ' + data.ora + '\n' +
-      'Persone: ' + data.persone + '\n' +
-      'Tavolo: ' + data.tavolo;
+    return primoNome(data.nome) + ', la ringraziamo per la sua prenotazione da Il Nemico.\n' +
+      'Ecco il riepilogo:\n\n' +
+      'Persone: ' + data.persone + '\n\n' +
+      'Data: ' + formatDataIt(data.data) + '\n\n' +
+      'Ora: ' + data.ora + '\n\n' +
+      'Tavolo: ' + data.tavolo + '\n\n' +
+      'Nome: ' + data.nome + '\n\n' +
+      'Telefono: ' + data.telefono;
   }
 
   var form = document.querySelector('.prenota-form');
@@ -249,15 +254,21 @@
         var waUrl = 'https://wa.me/' + OWNER_WHATSAPP + '?text=' + encodeURIComponent(riepilogo);
 
         if (summaryBox) {
+          var esc = function (s) {
+            var d = document.createElement('div');
+            d.textContent = s == null ? '' : s;
+            return d.innerHTML;
+          };
           summaryBox.innerHTML =
-            '<h3>Riepilogo della tua prenotazione</h3>' +
+            '<h3>' + esc(primoNome(datiPrenotazione.nome)) + ', la ringraziamo per la sua prenotazione.</h3>' +
+            '<p class="prenota-riepilogo-lead">Ecco il riepilogo:</p>' +
             '<ul>' +
-              '<li><span>Nome</span><span>' + datiPrenotazione.nome + '</span></li>' +
-              '<li><span>Telefono</span><span>' + datiPrenotazione.telefono + '</span></li>' +
-              '<li><span>Data</span><span>' + formatDataIt(datiPrenotazione.data) + '</span></li>' +
-              '<li><span>Ora</span><span>' + datiPrenotazione.ora + '</span></li>' +
-              '<li><span>Persone</span><span>' + datiPrenotazione.persone + '</span></li>' +
-              '<li><span>Tavolo</span><span>' + datiPrenotazione.tavolo + '</span></li>' +
+              '<li><span>Persone</span><span>' + esc(datiPrenotazione.persone) + '</span></li>' +
+              '<li><span>Data</span><span>' + esc(formatDataIt(datiPrenotazione.data)) + '</span></li>' +
+              '<li><span>Ora</span><span>' + esc(datiPrenotazione.ora) + '</span></li>' +
+              '<li><span>Tavolo</span><span>' + esc(datiPrenotazione.tavolo) + '</span></li>' +
+              '<li><span>Nome</span><span>' + esc(datiPrenotazione.nome) + '</span></li>' +
+              '<li><span>Telefono</span><span>' + esc(datiPrenotazione.telefono) + '</span></li>' +
             '</ul>' +
             '<a class="btn btn-red" href="' + waUrl + '" target="_blank" rel="noopener">Conferma anche su WhatsApp</a>';
           summaryBox.hidden = false;

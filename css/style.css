@@ -280,8 +280,9 @@ form.prenota-form{
 }
 .prenota-riepilogo h3{
   font-family: var(--display); letter-spacing:.02em; font-size: 1.4rem;
-  color: var(--gold); margin-bottom: .8em;
+  color: var(--gold); margin-bottom: .2em;
 }
+.prenota-riepilogo-lead{ color: var(--ink-dim); font-size:.92rem; margin-bottom: .9em; }
 .prenota-riepilogo ul{ display:flex; flex-direction:column; gap:.2em; }
 .prenota-riepilogo li{
   display:flex; justify-content:space-between; gap:1em;
