@@ -103,12 +103,7 @@
         </div>
 
         <div class="hero-prenota-grid">
-          <form class="prenota-form" data-reveal action="https://formsubmit.co/ajax/andreazonta07@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Nuova richiesta di prenotazione — Il Nemico">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-
+          <form class="prenota-form" data-reveal>
             <div class="field">
               <label for="f-nome">Nome e cognome</label>
               <input id="f-nome" name="Nome" type="text" required>
@@ -230,11 +225,11 @@
               </label>
             </div>
             <div class="field-full prenota-submit">
-              <button class="btn btn-red" type="submit">Prenota un tavolo</button>
+              <button class="btn btn-red" type="submit">Prenota su WhatsApp</button>
+              <p class="prenota-hint">Si aprirà WhatsApp con il messaggio già scritto: dovrai solo premere Invia per confermare col titolare.</p>
               <p class="form-feedback" role="status" aria-live="polite"></p>
             </div>
           </form>
-          <div class="prenota-riepilogo" hidden></div>
 
           <figure class="hero-prenota-photo" data-reveal>
             <img src="img/hero-prenota-bn.jpg" alt="Il Nemico alla griglia, tra fumo e brace" loading="lazy">

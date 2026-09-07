@@ -198,7 +198,7 @@
     }
   }
 
-  /* ---------- Modulo prenotazione: invio via FormSubmit + riepilogo WhatsApp al titolare ---------- */
+  /* ---------- Modulo prenotazione: redirect diretto su WhatsApp al titolare ---------- */
   var OWNER_WHATSAPP = '393472417355';
 
   function formatDataIt(iso) {
@@ -224,14 +224,8 @@
 
   var form = document.querySelector('.prenota-form');
   if (form) {
-    var feedback = form.querySelector('.form-feedback');
-    var summaryBox = form.parentElement.querySelector('.prenota-riepilogo');
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
-      if (feedback) { feedback.textContent = 'Invio in corso…'; feedback.className = 'form-feedback is-pending'; }
 
       var fd = new FormData(form);
       var datiPrenotazione = {
@@ -243,45 +237,9 @@
         tavolo: fd.get('Preferenza tavolo')
       };
 
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: fd
-      }).then(function (res) {
-        if (!res.ok) throw new Error('network');
-
-        var riepilogo = buildRiepilogo(datiPrenotazione);
-        var waUrl = 'https://wa.me/' + OWNER_WHATSAPP + '?text=' + encodeURIComponent(riepilogo);
-
-        if (summaryBox) {
-          var esc = function (s) {
-            var d = document.createElement('div');
-            d.textContent = s == null ? '' : s;
-            return d.innerHTML;
-          };
-          summaryBox.innerHTML =
-            '<h3>' + esc(primoNome(datiPrenotazione.nome)) + ', la ringraziamo per la sua prenotazione.</h3>' +
-            '<p class="prenota-riepilogo-lead">Ecco il riepilogo:</p>' +
-            '<ul>' +
-              '<li><span>Persone</span><span>' + esc(datiPrenotazione.persone) + '</span></li>' +
-              '<li><span>Data</span><span>' + esc(formatDataIt(datiPrenotazione.data)) + '</span></li>' +
-              '<li><span>Ora</span><span>' + esc(datiPrenotazione.ora) + '</span></li>' +
-              '<li><span>Tavolo</span><span>' + esc(datiPrenotazione.tavolo) + '</span></li>' +
-              '<li><span>Nome</span><span>' + esc(datiPrenotazione.nome) + '</span></li>' +
-              '<li><span>Telefono</span><span>' + esc(datiPrenotazione.telefono) + '</span></li>' +
-            '</ul>' +
-            '<a class="btn btn-red" href="' + waUrl + '" target="_blank" rel="noopener">Conferma anche su WhatsApp</a>';
-          summaryBox.hidden = false;
-        }
-
-        form.reset();
-        form.hidden = true;
-        if (feedback) { feedback.textContent = ''; }
-      }).catch(function () {
-        if (feedback) { feedback.textContent = 'Invio non riuscito. Chiamaci direttamente allo 0424 829984.'; feedback.className = 'form-feedback is-error'; }
-      }).finally(function () {
-        if (submitBtn) submitBtn.disabled = false;
-      });
+      var riepilogo = buildRiepilogo(datiPrenotazione);
+      var waUrl = 'https://wa.me/' + OWNER_WHATSAPP + '?text=' + encodeURIComponent(riepilogo);
+      window.location.href = waUrl;
     });
   }
 
