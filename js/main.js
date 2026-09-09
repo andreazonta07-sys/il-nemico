@@ -222,6 +222,47 @@
       'Telefono: ' + data.telefono;
   }
 
+  var dataInput = document.getElementById('f-data');
+  var oraSelect = document.getElementById('f-ora');
+
+  function generaOrari(inizio, fine) {
+    var opzioni = [];
+    var oraCorrente = inizio;
+    while (oraCorrente <= fine) {
+      var ore = Math.floor(oraCorrente / 60);
+      var minuti = oraCorrente % 60;
+      opzioni.push(
+        (ore < 10 ? '0' : '') + ore + ':' + (minuti < 10 ? '0' : '') + minuti
+      );
+      oraCorrente += 10;
+    }
+    return opzioni;
+  }
+
+  function aggiornaOrari() {
+    if (!dataInput || !oraSelect) return;
+
+    var iso = dataInput.value;
+    var giornoSettimana = iso ? new Date(iso + 'T00:00:00').getDay() : null;
+    var eDomenica = giornoSettimana === 0;
+
+    var orari = eDomenica
+      ? generaOrari(12 * 60, 14 * 60)
+      : generaOrari(19 * 60, 22 * 60);
+
+    oraSelect.innerHTML = '<option value="" disabled selected>Scegli l\'ora</option>';
+    orari.forEach(function (ora) {
+      var opt = document.createElement('option');
+      opt.value = ora;
+      opt.textContent = ora;
+      oraSelect.appendChild(opt);
+    });
+  }
+
+  if (dataInput && oraSelect) {
+    dataInput.addEventListener('change', aggiornaOrari);
+  }
+
   var form = document.querySelector('.prenota-form');
   if (form) {
     form.addEventListener('submit', function (e) {
