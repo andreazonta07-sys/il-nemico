@@ -327,6 +327,49 @@ form.prenota-form{
   }
 }
 
+/* ============ IL NOSTRO MENÙ ============ */
+.menu-link{
+  background: var(--bg);
+  padding: clamp(3.5rem, 8vw, 6rem) 1.2rem;
+  text-align:center;
+  border-top: 1px solid var(--line);
+}
+.menu-link-a{
+  display:inline-flex; flex-direction:column; align-items:center; gap:.5rem;
+  color: var(--ink);
+}
+.menu-link-title{
+  font-family: var(--display);
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  line-height:1;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: .12em;
+  transition: color .35s var(--ease), border-color .35s var(--ease);
+}
+.menu-link-cta{
+  margin-top:.9rem; font-weight:600; font-size:.95rem; letter-spacing:.06em;
+  color: var(--gold); transition: color .35s var(--ease), transform .35s var(--ease);
+}
+.menu-link-a:hover .menu-link-title,
+.menu-link-a:focus-visible .menu-link-title{ color: var(--gold); }
+.menu-link-a:hover .menu-link-cta,
+.menu-link-a:focus-visible .menu-link-cta{ color: var(--ink); transform: translateX(4px); }
+
+/* ============ POPUP MARTEDÌ ============ */
+.popup-martedi{
+  border: 1px solid var(--gold-dim);
+  border-radius: 20px;
+  background: var(--bg-2);
+  color: var(--ink);
+  padding: 2rem 1.8rem 1.6rem;
+  max-width: min(92vw, 26rem);
+  text-align:center;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.85);
+}
+.popup-martedi::backdrop{ background: rgba(0,0,0,.65); }
+.popup-martedi p{ font-size: 1.15rem; line-height:1.4; margin-bottom: 1.4rem; }
+
 /* ============ LA NOSTRA SPECIALITÀ ============ */
 .specialita-cards{
   display:flex; justify-content:center; align-items:flex-start;

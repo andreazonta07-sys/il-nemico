@@ -263,6 +263,20 @@
     dataInput.addEventListener('change', aggiornaOrari);
   }
 
+  var popupMartedi = document.getElementById('popup-martedi');
+  if (dataInput && popupMartedi) {
+    dataInput.addEventListener('change', function () {
+      if (!dataInput.value) return;
+      var eMartedi = new Date(dataInput.value + 'T00:00:00').getDay() === 2;
+      if (eMartedi && typeof popupMartedi.showModal === 'function' && !popupMartedi.open) {
+        popupMartedi.showModal();
+      }
+    });
+    popupMartedi.addEventListener('click', function (e) {
+      if (e.target === popupMartedi || e.target.hasAttribute('data-close-popup')) popupMartedi.close();
+    });
+  }
+
   var form = document.querySelector('.prenota-form');
   if (form) {
     form.addEventListener('submit', function (e) {

@@ -191,6 +191,15 @@
     </section>
   </div>
 
+  <!-- ============ IL NOSTRO MENÙ ============ -->
+  <section class="menu-link" id="menu" aria-label="Il nostro menù">
+    <a class="menu-link-a" href="menu.pdf" target="_blank" rel="noopener" data-reveal>
+      <span class="eyebrow">Sfoglia la carta</span>
+      <span class="menu-link-title">Il nostro menù</span>
+      <span class="menu-link-cta">Apri il menù (PDF) <span aria-hidden="true">→</span></span>
+    </a>
+  </section>
+
   <!-- ============ VIDEO TITOLARE ============ -->
   <section class="titolare-video" id="titolare-video" aria-label="Video del titolare de Il Nemico">
     <video src="video/titolare.mp4" controls playsinline preload="metadata" aria-label="Thomas, il titolare de Il Nemico, alla griglia"></video>
@@ -297,7 +306,7 @@
             <!-- Orari verificati sulla scheda Google Business il 14/08/2026. Il sabato di Ferragosto Google segnala "l'orario può variare": normale variazione da singola festività, non riflessa negli orari standard qui sotto. -->
             <ul class="hours-list">
               <li class="closed"><span>Lunedì</span><span>Chiuso</span></li>
-              <li><span>Martedì</span><span>10:00–21:00</span></li>
+              <li><span>Martedì</span><span>10:00–21:00 · Solo servizio bar</span></li>
               <li><span>Mercoledì – Sabato</span><span>10:00–24:00</span></li>
               <li><span>Domenica</span><span>11:00–17:00</span></li>
             </ul>
@@ -394,6 +403,11 @@
     </div>
   </div>
 </footer>
+
+<dialog class="popup-martedi" id="popup-martedi" aria-labelledby="popup-martedi-testo">
+  <p id="popup-martedi-testo">Il martedì è presente solo servizio bar</p>
+  <button type="button" class="btn btn-red" data-close-popup>Ho capito</button>
+</dialog>
 
 </body>
 </html>
