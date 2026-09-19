@@ -472,6 +472,7 @@ html.no-js .section-divider span{ transform:none; }
   font-size: .92rem; color: var(--ink-dim);
 }
 .hours-list li.closed span:last-child{ color: var(--red-bright); font-weight:600; }
+.hours-list .solo-bar{ font-style:normal; color: var(--red-bright); font-weight:600; }
 .dovesiamo-social{ margin-top: 2rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
 .dovesiamo-social-label{
   display:block; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase;
